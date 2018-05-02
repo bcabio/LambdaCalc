@@ -1,7 +1,14 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+
 public class LambdaNode {
   String nodetype; // "num", "plus', "minus", "multiply", "divide", "if"
   double value;
   LambdaNode child1, child2, child3;
+  LambdaNode parent;
+  ArrayList<LambdaNode> applicationBody;
+
+  HashMap<String,LambdaNode> context;
 
   LambdaNode () {
   }
@@ -44,6 +51,39 @@ public class LambdaNode {
 
   public LambdaNode getChild3() {
     return child3;
+  }
+
+
+  public void setParent(LambdaNode n) {
+    this.parent = n;
+  }
+
+  public LambdaNode getParent() {
+    return this.parent;
+  }
+
+
+  // Class methods for acquiring context
+  public HashMap<String, LambdaNode> getContext() {
+    return context;
+  }
+
+  public void setContext(HashMap<String,LambdaNode> ctx) {
+    this.context = ctx;
+  }
+
+
+  public void addToContext(String variableName, LambdaNode n) {
+    this.context.put(variableName, n); // edit to check for existing things in setContext
+  }
+
+  // Class methods for lambda applications
+  public void setApplicationBody(ArrayList<LambdaNode> ab) {
+    applicationBody = ab;
+  }
+
+  public ArrayList<LambdaNode> getApplicationBody() {
+    return applicationBody;
   }
 
 }

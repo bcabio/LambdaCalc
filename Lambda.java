@@ -24,7 +24,7 @@ public class Lambda {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         LambdaParser parser = new LambdaParser(tokens);
         parser.setErrorHandler(new BailErrorStrategy());
-        LambdaNode tree = (LambdaNode) parser.lambdaStart().value;
+        LambdaNode tree = (LambdaNode) parser.lambdaStart().val;
         //Integer level = new Integer(1);
         //displayTree(tree,level);
         evalError = false;
@@ -94,7 +94,10 @@ public class Lambda {
         return evalTree(t.getChild2());
       else
         return evalTree(t.getChild3());
-    }
+    } 
+    // else if(t.getNodeType().equals("lambda")) {
+    //   // ArrayList<LambdaNode> applicationBody = 
+    // }
     else { 
       evalError = true;
       return 0;
